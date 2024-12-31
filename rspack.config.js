@@ -40,7 +40,8 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js','.jsx','.ts','.tsx','.json']
+    extensions: ['.js','.jsx','.ts','.tsx','.json'],
+    
   },
   module: {
     rules: [
@@ -56,7 +57,6 @@ module.exports = {
             options: {
               postcssOptions: {
                 plugins: {
-                  tailwindcss: {},
                   autoprefixer: {},
                 },
               },
@@ -104,7 +104,7 @@ module.exports = {
       name: 'host',
       filename: 'remoteEntry.js',
       remotes: {
-        apps:"application@http://localhost:8082/remoteEntry.js"
+        apps:"application@http://localhost:8082/remoteEntry.js",
       },
       exposes: {},
       shared: {
