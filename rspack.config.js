@@ -108,7 +108,6 @@ module.exports = {
       },
       exposes: {},
       shared: {
-        ...deps,
         react: { eager: true },
         'react-dom': { eager: true },
         'react-router-dom': { eager: true },
