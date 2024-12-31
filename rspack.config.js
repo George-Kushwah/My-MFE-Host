@@ -13,9 +13,13 @@ module.exports = {
   entry: {
     main: './src/index.ts',
   },
+  output: {
+    publicPath:"/"
+  },
   
   devServer: {
     port: 8081,
+    allowedHosts:"all",
     historyApiFallback: true,
     watchFiles: [path.resolve(__dirname, 'src')],
     onListening: function (devServer) {
@@ -99,8 +103,12 @@ module.exports = {
     new rspack.container.ModuleFederationPlugin({
       name: 'host',
       filename: 'remoteEntry.js',
+      remotes: {
+        apps:"application@http://localhost:8082/remoteEntry.js"
+      },
       exposes: {},
       shared: {
+        ...deps,
         react: { eager: true },
         'react-dom': { eager: true },
         'react-router-dom': { eager: true },
