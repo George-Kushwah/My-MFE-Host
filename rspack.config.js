@@ -2,8 +2,8 @@ const rspack = require('@rspack/core')
 const refreshPlugin = require('@rspack/plugin-react-refresh')
 const isDev = process.env.NODE_ENV === 'development'
 const path = require('path');
-
 const printCompilationMessage = require('./compilation.config.js');
+const deps=require("./package.json").dependencies
 
 /**
  * @type {import('@rspack/cli').Configuration}
@@ -53,7 +53,7 @@ module.exports = {
         test: /\.scss$/,
         use: [
           {
-            loader: 'postcss-loader',
+            loader: 'sass-loader',
             options: {
               postcssOptions: {
                 plugins: {
@@ -108,6 +108,7 @@ module.exports = {
       },
       exposes: {},
       shared: {
+        ...deps,
         react: { eager: true },
         'react-dom': { eager: true },
         'react-router-dom': { eager: true },
